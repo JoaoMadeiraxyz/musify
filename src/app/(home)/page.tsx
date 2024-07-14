@@ -1,4 +1,4 @@
-import { Button } from "./components/Button";
+import { Button } from "../components/Button";
 
 import { AirplaneTakeoff } from "@phosphor-icons/react/dist/ssr";
 
