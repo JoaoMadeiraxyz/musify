@@ -11,8 +11,8 @@ Todo Gerente de Projetos tem o sonho de dar vida ao seu próprio projeto, e para
 > O uso do código deste repositório é livre para qualquer um. Pull Requests que não forem feitas pelos membros listados abaixo não serão aprovadas.
 
 ## Colaboradores
-- João Victor:
+- [João Victor](https://github.com/JoaoMadeiraxyz):
   `Programação, Prototipação, Tomada de decisões estratégicas e criativas`
-- Claudia Oliveira:
+- [Claudia Oliveira](https://github.com/claudiaC137):
   `Programação, Prototipação, Auxilio nas tomadas de decisões`
 
