@@ -18,7 +18,7 @@ export function HeroSection() {
           <h1 className="text-9xl font-bold font-lexend tracking-widest">
             MUSIFY
           </h1>
-          <p className="text-2xl">Give voice to your ideas</p>
+          <p className="text-2xl">Give to your ideas</p>
         </div>
       </div>
 
