@@ -9,7 +9,7 @@ export function BuyFromTheBest() {
     <section className="w-full min-h-screen flex flex-col items-center justify-center bg-black relative px-16">
       <Image
         src={backgroundTexture}
-        className="absolute w-full h-full z-0 object-fill opacity-40"
+        className="absolute w-full h-full z-0 object-cover opacity-40"
         alt=""
         quality={100}
       />
@@ -18,7 +18,7 @@ export function BuyFromTheBest() {
           src={promotionalImage}
           alt=""
           quality={100}
-          className="max-w-3xl"
+          className="max-w-3xl md:block hidden"
         />
         <div className="flex flex-col justify-between max-w-2xl">
           <h2 className="font-bold text-6xl">
