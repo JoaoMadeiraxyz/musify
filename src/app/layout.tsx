@@ -1,5 +1,9 @@
+import React from "react";
+
 import type { Metadata } from "next";
 import "./globals.css";
+
+import { Providers } from "./components/providers";
 
 export const metadata: Metadata = {
   title: "Musify",
@@ -13,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <Providers>
+        <body className="text-white font-inter">{children}</body>
+      </Providers>
     </html>
   );
 }
