@@ -2,20 +2,20 @@ import Image from "next/image";
 
 import heroImage from "../../../../../public/images/catalog/hero-background.png";
 
-import Button from "../../button";
+import { Button } from "../../button";
 
 import { ToteSimple, CaretDoubleRight } from "@phosphor-icons/react/dist/ssr";
 
 export function HeroSection() {
   return (
-    <section className="flex flex-col min-h-screen w-full relative bg-black">
+    <section className="flex flex-col min-h-[80vh] w-full relative bg-black">
       <Image
         alt="background image"
         src={heroImage}
         quality={100}
-        className="w-full absolute top-0 left-0 pointer-events-none z-0 opacity-90 object-cover object-center h-[80%]"
+        className="w-full absolute top-0 left-0 pointer-events-none z-0 opacity-90 object-cover object-center h-full"
       />
-      <div className="flex flex-col justify-end h-[80%] w-full pb-28 absolute top-0 left-0 z-10 px-24">
+      <div className="flex flex-col justify-end h-full w-full pb-28 absolute top-0 left-0 z-10 px-24">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col">
             <span className="text-blue-500 font-bold text-xl">Novo</span>

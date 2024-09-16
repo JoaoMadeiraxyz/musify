@@ -6,7 +6,7 @@ interface ButtonProps {
   className?: string;
 }
 
-export default function Button({ icon, text, className }: ButtonProps) {
+export function Button({ icon, text, className }: ButtonProps) {
   return (
     <button
       className={`${className} flex gap-1 items-center justify-center py-3 pl-3 pr-7 rounded-lg`}
