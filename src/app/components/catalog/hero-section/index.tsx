@@ -15,17 +15,17 @@ export function HeroSection() {
         quality={100}
         className="w-full absolute top-0 left-0 pointer-events-none z-0 opacity-90 object-cover object-center h-full"
       />
-      <div className="flex flex-col justify-end h-full w-full pb-28 absolute top-0 left-0 z-10 px-24">
+      <div className="flex flex-col justify-end h-full w-full pb-28 absolute top-0 left-0 z-10 px-8 lg:px-24">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col">
-            <span className="text-blue-500 font-bold text-xl">Novo</span>
-            <h2 className="text-white tracking-wider font-bold text-5xl">
+            <span className="text-blue-500 font-bold lg:text-xl">Novo</span>
+            <h2 className="text-white tracking-wider font-bold text-4xl lg:text-5xl">
               CHIHIRO
             </h2>
-            <p className="text-white tracking-wider text-xl">BILLIE EILISH</p>
+            <p className="text-white tracking-wider xl:text-xl">BILLIE EILISH</p>
           </div>
 
-          <div className="flex gap-5 items-center justify-center w-fit">
+          <div className="flex  gap-5 items-center justify-center w-fit">
             <Button
               className="bg-white text-black tracking-wide"
               text="Adquirir"

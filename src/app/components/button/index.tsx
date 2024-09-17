@@ -9,7 +9,7 @@ interface ButtonProps {
 export function Button({ icon, text, className }: ButtonProps) {
   return (
     <button
-      className={`${className} flex gap-1 items-center justify-center py-3 pl-3 pr-7 rounded-lg`}
+      className={`${className} flex gap-1 items-center justify-center py-2 md:py-3 pl-2 md:pl-3 pr-5 md:pr-7 rounded-lg`}
     >
       {icon}
       {text}

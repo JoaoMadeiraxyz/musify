@@ -30,15 +30,13 @@ export function Category({ text }: CategoryProps) {
             },
             768: {
               width: 768,
-              slidesPerView: 2,
+              slidesPerView: 2.5,
             },
             320: {
               width: 320,
-              slidesPerView: 1,
+              slidesPerView: 1.1,
             },
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           <SwiperSlide>
             <MusicCard />
