@@ -1,16 +1,33 @@
+import { ReactNode } from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/services/firebase/config";
+import { User } from "firebase/auth";
 
-const AuthContext = createContext();
+type AuthContextType = {
+  currentUser: User | null;
+  loading: boolean;
+  logout: () => void;
+};
 
-export function AuthProvider({ children }) {
+// Valor padrão para o contexto
+const AuthContext = createContext<AuthContextType>({
+  currentUser: null,
+  loading: true,
+  logout: () => {},
+});
+
+type AuthProviderProps = {
+  children: ReactNode;
+};
+
+export function AuthProvider({ children }: AuthProviderProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
