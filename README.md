@@ -23,3 +23,6 @@ Every Project Manager dreams of bringing their own project to life, and for us a
 
 > [!IMPORTANT]
 > The code in this repository is open for anyone. Pull Requests made by individuals other than the listed members will not be approved.
+
+## Demo | Work In Progress!!
+https://github.com/user-attachments/assets/0adacbc5-3398-4f86-9252-ed76834fd39c
