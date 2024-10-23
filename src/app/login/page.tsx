@@ -12,8 +12,8 @@ import loginScreenImage from "../../../public/images/login/login-screen-image.pn
 export default function Login() {
   const [isRegistering, setIsRegistering] = useState<boolean>(false);
   return (
-    <main className="h-screen bg-black flex items-center px-56 py-20">
-      <div className="w-1/2 h-full bg-black">
+    <main className="h-screen bg-black flex items-center px-8 md:px-20 lg:px-56 py-20">
+      <div className="md:w-1/2 md:block hidden h-full bg-black">
         <Image
           className="w-full h-full opacity-80"
           width={800}

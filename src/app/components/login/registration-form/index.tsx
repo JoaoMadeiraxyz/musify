@@ -90,7 +90,7 @@ export function RegistrationForm({ setIsRegistering }: RegistrationFormProps) {
   }
 
   return (
-    <div className="w-1/2 h-full flex flex-col justify-center items-center px-8 gap-5">
+    <div className="md:w-1/2 w-full h-full flex flex-col justify-center items-center px-8 gap-5">
       <div className="flex flex-col gap-2">
         <h1 className="font-bold text-4xl text-center">Registrar-se</h1>
         <p className="text-center">
