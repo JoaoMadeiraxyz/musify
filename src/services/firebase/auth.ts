@@ -1,8 +1,9 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import { auth } from "./config";
+import { auth } from "./config"
 
 type AuthValues = {
   email: string;
@@ -32,6 +33,14 @@ export async function loginUser({ email, password }: AuthValues) {
     return userCredential.user;
   } catch (error) {
     console.error(error);
-    throw new Error("Houve um erro ao tentar realizar o login!");
+    throw new Error("Houve um erro ao tentar realizar o login.");
+  }
+}
+
+export async function logoutUser() {
+  try {
+    signOut(auth);
+  } catch (error) {
+    throw new Error("Houve um erro ao tentar realizar o logout.");
   }
 }
