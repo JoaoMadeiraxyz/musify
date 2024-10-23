@@ -1,7 +1,10 @@
 import React from "react";
 
+import { ToastContainer } from "react-toastify";
+
 import type { Metadata } from "next";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Providers } from "./components/providers";
 
@@ -17,9 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Providers>
-        <body className="text-white font-inter">{children}</body>
-      </Providers>
+      <body className="font-inter text-white">
+        <Providers>{children}</Providers>
+        <ToastContainer />
+      </body>
     </html>
   );
 }
