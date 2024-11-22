@@ -3,23 +3,40 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "./config"
+import { auth, db } from "./config";
+import { doc, setDoc } from "firebase/firestore";
 
 type AuthValues = {
   email: string;
   password: string;
+  username: string;
 };
 
-export async function registerNewUser({ email, password }: AuthValues) {
+const FB_USERS_COLLECTION = "users";
+
+export async function registerNewUser({
+  email,
+  password,
+  username,
+}: AuthValues) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-    return userCredential.user;
+
+    const user = userCredential.user;
+
+    await setDoc(doc(db, FB_USERS_COLLECTION, user.uid), {
+      username,
+      email,
+    });
+
+    return user;
   } catch (error) {
     console.error(error);
+    throw new Error("Houve um erro ao registrar o usuário.");
   }
 }
 
