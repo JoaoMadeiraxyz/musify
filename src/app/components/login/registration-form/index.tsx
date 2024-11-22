@@ -21,6 +21,13 @@ const registrationSchema = z
       .min(4, {
         message: "Insira um e-mail válido!",
       }),
+    username: z
+      .string({
+        required_error: "Certifique-se de inserir seu nome de usuário",
+      })
+      .min(3, {
+        message: "O nome de usuário deve conter no mínimo 3 caracteres",
+      }),
     password: z
       .string({
         required_error: "Certifique-se de inserir a sua senha!",
@@ -54,6 +61,7 @@ export function RegistrationForm({ setIsRegistering }: RegistrationFormProps) {
   } = useForm({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -65,6 +73,7 @@ export function RegistrationForm({ setIsRegistering }: RegistrationFormProps) {
       await registerNewUser({
         email: data.email,
         password: data.password,
+        username: data.username,
       }).then(() => {
         toast.success("Usuário cadastrado com sucesso!", {
           position: "bottom-right",
@@ -102,6 +111,19 @@ export function RegistrationForm({ setIsRegistering }: RegistrationFormProps) {
         onSubmit={handleSubmit(handleRegister)}
         className="flex flex-col gap-5 w-full max-w-[400px]"
       >
+        <fieldset className="flex flex-col gap-2">
+          <input
+            {...register("username")}
+            type="text"
+            placeholder="Nome de usuário"
+            className="bg-transparent border-2 border-white px-3 py-2 rounded-lg w-full"
+          />
+
+          {errors?.username && (
+            <FieldErrorMessage message={errors.username.message} />
+          )}
+        </fieldset>
+
         <fieldset className="flex flex-col gap-2">
           <input
             {...register("email")}
