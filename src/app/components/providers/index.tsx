@@ -3,6 +3,7 @@
 import React from "react";
 
 import { ReactLenis, useLenis } from "lenis/react";
+import { Theme } from "@radix-ui/themes";
 import { AuthProvider } from "@/app/providers/auth-context";
 
 interface ProvidersProps {
@@ -15,10 +16,12 @@ export function Providers({ children }: ProvidersProps) {
   });
 
   return (
-    <AuthProvider>
-      <ReactLenis root options={{ duration: 1.8 }}>
-        {children}
-      </ReactLenis>
-    </AuthProvider>
+    <Theme>
+      <AuthProvider>
+        <ReactLenis root options={{ duration: 1.8 }}>
+          {children}
+        </ReactLenis>
+      </AuthProvider>
+    </Theme>
   );
 }

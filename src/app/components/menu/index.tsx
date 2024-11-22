@@ -3,12 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import clsx from "clsx";
+
+import { OptionsPopover } from "../options-popover";
 
 import musifyLogo from "../../../../public/logo.svg";
 
-import { CaretDown } from "@phosphor-icons/react/dist/ssr";
 import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
 
 export function Menu() {
@@ -41,28 +41,12 @@ export function Menu() {
       </div>
 
       <div className="flex gap-5 items-center">
-        <button>
-          <MagnifyingGlass
-            size={28}
-            className="text-white transition-colors duration-300 hover:text-slate-400"
-          />
+        <button className="flex gap-1 items-end text-white transition-colors duration-300 hover:text-slate-400">
+          Procurar
+          <MagnifyingGlass size={28} />
         </button>
-        <Link
-          className={clsx(
-            "transition-colors duration-300 hover:text-slate-400",
-            {
-              "font-bold": pathname === "/bag",
-            }
-          )}
-          href={"/bag"}
-        >
-          Meu Carrinho
-        </Link>
 
-        <button className="flex gap-1 items-center justify-center">
-          <div className="w-10 h-10 bg-slate-400 rounded-lg"></div>
-          <CaretDown size={14} className="text-white" weight="fill" />
-        </button>
+        <OptionsPopover pathname={pathname} />
       </div>
     </nav>
   );
