@@ -1,4 +1,4 @@
-import { db } from "../../../../../config";
+import { db } from "./config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 const CART_COLLECTION = "cart";
 
