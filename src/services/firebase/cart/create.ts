@@ -1,10 +1,10 @@
-import { db } from "./config";
+import { db } from "../config";
 import { collection, addDoc } from "firebase/firestore";
 
 const CART_COLLECTION = "cart";
 
 type AddItemProps = {
-  id: string;
+  item_id: string;
   type: "album" | "music" | "artist";
   name: string;
   price: number;
