@@ -18,6 +18,6 @@ export async function addItemToCart(item: AddItemProps) {
     console.log("Item added to cart:", item);
   } catch (error) {
     console.error("Error adding item to cart:", error);
-    throw new Error("Failed to add item to cart."); 
+    throw new Error("Failed to add item to cart.");
   }
 }

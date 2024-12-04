@@ -9,6 +9,8 @@ import * as Popover from "@radix-ui/react-popover";
 
 import { logoutUser } from "@/services/firebase/auth";
 
+import { useAuth } from "@/app/hooks/use-auth";
+
 import { CaretDown } from "@phosphor-icons/react/dist/ssr";
 import { CaretUp } from "@phosphor-icons/react/dist/ssr";
 
@@ -18,6 +20,8 @@ interface OptionsPopoverProps {
 
 export function OptionsPopover({ pathname }: OptionsPopoverProps) {
   const [open, setOpen] = useState(false);
+  const { currentUser } = useAuth();
+
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
@@ -41,7 +45,7 @@ export function OptionsPopover({ pathname }: OptionsPopoverProps) {
               "font-bold": pathname === "/profile",
             }
           )}
-          href={"/profile"}
+          href={`/profile/${currentUser?.uid}`}
         >
           Perfil
         </Link>
