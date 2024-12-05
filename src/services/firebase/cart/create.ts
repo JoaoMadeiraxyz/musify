@@ -9,6 +9,7 @@ type AddItemProps = {
   name: string;
   price: number;
   user_id: string;
+  artist_id: string;
 };
 
 export async function addItemToCart(item: AddItemProps) {

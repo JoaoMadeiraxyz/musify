@@ -33,7 +33,7 @@ export default function Catalog() {
   return (
     <main className="min-h-screen bg-black">
       <HeroSection artist={artists ? artists[0] : null} />
-      <CatalogCategories />
+      <CatalogCategories musics={musics} />
     </main>
   );
 }

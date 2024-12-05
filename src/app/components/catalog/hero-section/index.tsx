@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { Button } from "../../button";
 
-import { ToteSimple, CaretDoubleRight } from "@phosphor-icons/react/dist/ssr";
+import { Basket, CaretDoubleRight } from "@phosphor-icons/react/dist/ssr";
 
 import { listArtistMusics } from "@/services/firebase/music/get-musics";
 
@@ -59,7 +59,7 @@ export function HeroSection({ artist }: HeroSectionProps) {
               className="bg-white text-black tracking-wide"
               text="Adquirir"
               icon={
-                <ToteSimple
+                <Basket
                   size={20}
                   weight="fill"
                   className="min-w-[20px] min-h-[20px]"
