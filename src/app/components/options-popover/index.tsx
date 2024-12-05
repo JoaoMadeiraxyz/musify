@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import clsx from "clsx";
 
@@ -10,6 +11,8 @@ import * as Popover from "@radix-ui/react-popover";
 import { logoutUser } from "@/services/firebase/auth";
 
 import { useAuth } from "@/app/hooks/use-auth";
+import { getUserData } from "@/services/firebase/user/get-user-data";
+import { User } from "@/app/types/user";
 
 import { CaretDown } from "@phosphor-icons/react/dist/ssr";
 import { CaretUp } from "@phosphor-icons/react/dist/ssr";
@@ -21,6 +24,20 @@ interface OptionsPopoverProps {
 export function OptionsPopover({ pathname }: OptionsPopoverProps) {
   const [open, setOpen] = useState(false);
   const { currentUser } = useAuth();
+
+  const [userData, setUserData] = useState<User | null>(null);
+
+  async function handleGetUserData() {
+    const result = await getUserData(currentUser?.uid);
+    setUserData(result);
+  }
+
+  useEffect(() => {
+    if (currentUser) {
+      handleGetUserData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
@@ -53,10 +70,10 @@ export function OptionsPopover({ pathname }: OptionsPopoverProps) {
           className={clsx(
             "transition-colors duration-300 hover:text-slate-400 p-1",
             {
-              "font-bold": pathname === "/bag",
+              "font-bold": pathname === "/cart",
             }
           )}
-          href={"/bag"}
+          href={"/cart"}
         >
           Meu Carrinho
         </Link>

@@ -1,5 +1,13 @@
 import { db } from "../config";
-import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
 import { Music } from "@/app/types/music";
 
@@ -35,6 +43,7 @@ export async function listArtistMusics({ artist_id }: ListArtistMusicsProps) {
         price: doc.data()?.price,
         status: doc.data()?.status,
         created_at: doc.data()?.created_at,
+        artist_id: doc.data()?.artist_id,
       });
     });
 
@@ -66,10 +75,39 @@ export async function listMusics() {
         price: doc.data()?.price,
         status: doc.data()?.status,
         created_at: doc.data()?.created_at,
+        artist_id: doc.data()?.artist_id,
       });
     });
 
     return musics;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+type getMusicDataProps = {
+  music_id: string;
+};
+
+export async function getMusicData({ music_id }: getMusicDataProps) {
+  try {
+    const musicDocRef = doc(db, FB_MUSICS_COLLECTION, music_id);
+    const musicDocSnapshot = await getDoc(musicDocRef);
+
+    const music: Music = {
+      album_id: musicDocSnapshot.data()?.album_id,
+      artist_id: musicDocSnapshot.data()?.artist_id,
+      created_at: musicDocSnapshot.data()?.created_at,
+      genre: musicDocSnapshot.data()?.genre,
+      music_id: musicDocSnapshot.data()?.music_id,
+      music_image: musicDocSnapshot.data()?.music_image,
+      music_name: musicDocSnapshot.data()?.music_name,
+      price: musicDocSnapshot.data()?.price,
+      status: musicDocSnapshot.data()?.status,
+    };
+
+    return music;
   } catch (error) {
     console.error(error);
     return null;
