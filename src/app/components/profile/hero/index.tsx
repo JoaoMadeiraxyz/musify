@@ -2,11 +2,19 @@
 
 import Image from "next/image";
 
+import { UploadUserImageModal } from "../../upload-user-image-modal";
+
 import backgroundTexture from "../../../../../public/images/texture/bg-texture.png";
 
 import { DotsThree } from "@phosphor-icons/react";
 
-export function ProfileHero() {
+import { User } from "@/app/types/user";
+
+type ProfileHeroProps = {
+  user: User | null;
+};
+
+export function ProfileHero({ user }: ProfileHeroProps) {
   return (
     <section className="w-full flex flex-col relative px-8 md:px-36 py-28">
       <Image
@@ -17,16 +25,12 @@ export function ProfileHero() {
       />
       <div className="flex flex-row w-full justify-between z-10">
         <div className="flex flex-row gap-5">
-          <Image
-            className="w-64 h-64 rounded-full object-cover object-center"
-            src={"https://placehold.co/256x256/png"}
-            width={256}
-            height={256}
-            alt="User profile image"
-          />
+          <UploadUserImageModal user={user} />
           <div className="flex flex-col gap-5">
             <span>Perfil</span>
-            <h1 className="text-8xl font-bold">João</h1>
+            <h1 className="text-8xl font-bold truncate whitespace-nowrap max-w-[250px] md:max-w-[500px] xl:max-w-[800px] 2xl:max-w-[1000px]">
+              {user?.username}
+            </h1>
           </div>
         </div>
         <div>
