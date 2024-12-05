@@ -10,14 +10,17 @@ import { toast } from "react-toastify";
 import { FieldValues } from "react-hook-form";
 
 import { FieldErrorMessage } from "@/app/components/field-error-message";
+import { RegisterAlbumPopover } from "@/app/components/register-album-popover";
 
 import { createMusicDocument } from "@/services/firebase/music/create";
+import { getArtistAlbums } from "@/services/firebase/album/get-albums";
 import { useAuth } from "@/app/hooks/use-auth";
 import { getUserData } from "@/services/firebase/user/get-user-data";
 import { getArtistData } from "@/services/firebase/artist/get-artist-data";
 
 import { User } from "@/app/types/user";
 import { Artist } from "@/app/types/artist";
+import { Album } from "@/app/types/album";
 
 import backgroundTexture from "../../../../public/images/texture/bg-texture.png";
 
@@ -56,6 +59,7 @@ export default function EnviarMusica() {
 
   const [userData, setUserData] = useState<User | null>(null);
   const [artistData, setArtistData] = useState<Artist | null>(null);
+  const [albums, setAlbums] = useState<Album[] | null | undefined>(null);
 
   async function handleGetUserData() {
     const result = await getUserData(currentUser?.uid);
@@ -65,6 +69,11 @@ export default function EnviarMusica() {
   async function handleGetArtistData() {
     const result = await getArtistData({ artist_id: userData?.artist_id! });
     setArtistData(result);
+  }
+
+  async function handleGetAlbums() {
+    const result = await getArtistAlbums({ artist_id: artistData?.artist_id! });
+    setAlbums(result);
   }
 
   useEffect(() => {
@@ -80,6 +89,12 @@ export default function EnviarMusica() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
+
+  useEffect(() => {
+    if (artistData?.artist_id) {
+      handleGetAlbums();
+    }
+  }, [artistData]);
 
   const {
     register,
@@ -266,14 +281,24 @@ export default function EnviarMusica() {
             </fieldset>
 
             <fieldset className="flex flex-col gap-2">
-              <select
-                className="bg-transparent border-2 border-white px-3 py-2 rounded-lg w-full"
-                defaultValue=""
-              >
-                <option className="bg-black" value="" disabled>
-                  Álbum
-                </option>
-              </select>
+              <div className="w-full flex flex-row items-center justify-center gap-2">
+                <select
+                  className="bg-transparent border-2 border-white px-3 py-2 rounded-lg w-full"
+                  defaultValue=""
+                  {...register("album")}
+                >
+                  <option className="bg-black" value="" disabled>
+                    Álbum
+                  </option>
+                  {albums?.map((album) => (
+                    <option value={album.album_id} key={album.album_id}>
+                      {album.album_name}
+                    </option>
+                  ))}
+                </select>
+
+                <RegisterAlbumPopover artist={artistData} />
+              </div>
 
               {errors?.album && (
                 <FieldErrorMessage message={errors.album.message} />
