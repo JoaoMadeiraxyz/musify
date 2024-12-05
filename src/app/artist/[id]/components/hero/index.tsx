@@ -1,17 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import heroImage from "../../../../../../public/images/catalog/hero-background.png";
-import verifiedIcon from "../../../../../../public/verified.svg";
-
 import { Button } from "@/app/components/button";
 import { UploadArtistBannerModal } from "@/app/components/upload-artist-banner";
 
-import {
-  ToteSimple,
-  CaretDoubleRight,
-  PlusCircle,
-} from "@phosphor-icons/react/dist/ssr";
+import { CaretDoubleRight, PlusCircle } from "@phosphor-icons/react/dist/ssr";
 
 import { User } from "@/app/types/user";
 import { Artist } from "@/app/types/artist";
@@ -42,29 +35,19 @@ export function Hero({ user, artist_data }: heroProps) {
 
           {user?.artist_id !== artist_data?.artist_id ? (
             <div className="flex  gap-5 items-center justify-center w-fit">
-              <Button
-                className="bg-white text-black tracking-wide"
-                text="Adquirir"
-                icon={
-                  <ToteSimple
-                    size={20}
-                    weight="fill"
-                    className="min-w-[20px] min-h-[20px]"
-                  />
-                }
-              />
-
-              <Button
-                className="bg-white/40 text-white font-bold"
-                text="Ver outros"
-                icon={
-                  <CaretDoubleRight
-                    size={20}
-                    weight="fill"
-                    className="min-w-[20px] min-h-[20px]"
-                  />
-                }
-              />
+              <Link href={"/catalog"}>
+                <Button
+                  className="bg-white/40 text-white font-bold"
+                  text="Ver outros"
+                  icon={
+                    <CaretDoubleRight
+                      size={20}
+                      weight="fill"
+                      className="min-w-[20px] min-h-[20px]"
+                    />
+                  }
+                />
+              </Link>
             </div>
           ) : (
             <div className="flex  gap-5 items-center justify-center w-fit">

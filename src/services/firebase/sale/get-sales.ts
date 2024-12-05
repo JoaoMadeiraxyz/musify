@@ -1,5 +1,5 @@
 import { db } from "../config";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 
 const FB_SALES_COLLECTION = "sales";
 
@@ -12,7 +12,11 @@ type getUserSalesProps = {
 export async function getUserSales({ user_id }: getUserSalesProps) {
   try {
     const saleCollectionRef = collection(db, FB_SALES_COLLECTION);
-    const q = query(saleCollectionRef, where("user_id", "==", user_id));
+    const q = query(
+      saleCollectionRef,
+      where("user_id", "==", user_id),
+      orderBy("created_at", "desc")
+    );
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) return null;
@@ -27,6 +31,7 @@ export async function getUserSales({ user_id }: getUserSalesProps) {
         price: doc.data()?.price,
         status: doc.data()?.status,
         user_id: doc.data()?.user_id,
+        created_at: doc.data()?.created_at,
       });
     });
 

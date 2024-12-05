@@ -1,36 +1,21 @@
-import Image from "next/image";
+import { MusicListCard } from "../music-list-card";
 
-import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
+import { Music } from "@/app/types/music";
 
-export function MusicsList() {
+interface MusicLisProps {
+  musics: Music[] | null;
+}
+
+export function MusicsList({ musics }: MusicLisProps) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-row">
-        <div className="flex flex-row w-[70%]">
-          <div className="flex flex-row gap-2 items-center">
-            1
-            <Image
-              className="w-20 h-20 object-cover object-center"
-              src={"https://placehold.co/80x80/png"}
-              width={80}
-              height={80}
-              alt="Artist profile image"
-            />
-            <div className="flex flex-col">
-              <p>Music name</p>
-              <p className="text-slate-300">Artist name</p>
-            </div>
-          </div>
-        </div>
+      {musics?.map((music, index) => (
+        <MusicListCard key={music.music_id} music={music} index={index} />
+      ))}
 
-        <div className="flex flex-row w-[20%]">
-          <p className="text-slate-300">Album Name</p>
-        </div>
-
-        <div className="flex flex-row w-[10%] justify-end">
-          <CheckCircle size={34} className="text-blue-600" />
-        </div>
-      </div>
+      {(!musics || musics.length === 0) && (
+        <p>Você ainda não adquiriu nada...</p>
+      )}
     </div>
   );
 }

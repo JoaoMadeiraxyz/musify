@@ -9,8 +9,6 @@ import { OptionsPopover } from "../options-popover";
 
 import musifyLogo from "../../../../public/logo.svg";
 
-import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
-
 export function Menu() {
   const pathname = usePathname();
 
@@ -41,11 +39,6 @@ export function Menu() {
       </div>
 
       <div className="flex gap-5 items-center">
-        <button className="flex gap-1 items-end text-white transition-colors duration-300 hover:text-slate-400">
-          Procurar
-          <MagnifyingGlass size={28} />
-        </button>
-
         <OptionsPopover pathname={pathname} />
       </div>
     </nav>

@@ -109,7 +109,7 @@ export function ProfileHero({ user }: ProfileHeroProps) {
   }
 
   return (
-    <section className="w-full flex flex-col relative px-8 md:px-36 py-28">
+    <section className="w-full flex flex-col relative px-8 md:px-36 py-28 min-h-[50vh]">
       <Image
         src={backgroundTexture}
         className="absolute w-full h-full left-0 top-0 z-0 object-cover opacity-40 select-none"

@@ -55,18 +55,6 @@ export function HeroSection({ artist }: HeroSectionProps) {
           </div>
 
           <div className="flex  gap-5 items-center justify-center w-fit">
-            <Button
-              className="bg-white text-black tracking-wide"
-              text="Adquirir"
-              icon={
-                <Basket
-                  size={20}
-                  weight="fill"
-                  className="min-w-[20px] min-h-[20px]"
-                />
-              }
-            />
-
             <Link href={`/artist/${artist?.artist_id}`}>
               <Button
                 className="bg-white/40 text-white font-bold"

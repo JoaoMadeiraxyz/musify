@@ -5,4 +5,5 @@ export type SaleItem = {
   user_id: string;
   artist_id: string;
   status: "pending" | "declined" | "finished" | "canceled";
+  created_at: string;
 };

@@ -13,6 +13,7 @@ import backgroundTexture from "../../../public/images/texture/bg-texture.png";
 import { useAuth } from "../hooks/use-auth";
 import { getCartItems } from "@/services/firebase/cart/read";
 import { emptyCart } from "@/services/firebase/cart/Delete";
+import { createSale } from "@/services/firebase/sale/create";
 
 import { CartItem } from "../types/cart-item";
 
@@ -27,6 +28,37 @@ export default function Cart() {
   async function handleGetCartItems() {
     const result = await getCartItems(currentUser?.uid!);
     setCartItems(result);
+  }
+
+  async function handleCreateSales() {
+    if (cartItems && currentUser) {
+      cartItems.forEach(async (item) => {
+        const promise = () => {
+          return new Promise(async (resolve, reject) => {
+            try {
+              await createSale({
+                artist_id: item.artist_id,
+                item_id: item.item_id,
+                price: item.price,
+                user_id: currentUser.uid,
+                cart_item_id: item.cart_item_doc_id,
+              });
+
+              resolve(true);
+            } catch (error) {
+              console.error(error);
+              reject(error);
+            }
+          });
+        };
+
+        toast.promise(promise, {
+          pending: "Finalizando a compra...",
+          success: "Compra finalizada com sucesso!",
+          error: "Houve um erro ao finalizar a compra.",
+        });
+      });
+    }
   }
 
   async function handleEmptyCart() {
@@ -57,6 +89,7 @@ export default function Cart() {
     if (currentUser?.uid) {
       handleGetCartItems();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   useEffect(() => {
@@ -113,7 +146,7 @@ export default function Cart() {
             </Link>
 
             {cartItems && cartItems.length > 0 && (
-              <button>
+              <button onClick={handleCreateSales}>
                 <Button
                   className="bg-blue-600 text-white tracking-wide"
                   text="Finalizar Compra"

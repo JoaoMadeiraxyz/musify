@@ -43,7 +43,15 @@ export function OptionsPopover({ pathname }: OptionsPopoverProps) {
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger asChild>
         <button className="flex gap-1 items-center justify-center">
-          <div className="w-10 h-10 bg-slate-400 rounded-lg"></div>
+          <div className="w-10 h-10 bg-slate-400 rounded-lg">
+            <Image
+              className="w-10 h-10 rounded-lg object-cover object-center"
+              src={userData?.image_url || "https://placehold.co/40x40/png"}
+              width={40}
+              height={40}
+              alt="User profile image"
+            />
+          </div>
           {open ? (
             <CaretUp size={14} className="text-white" weight="fill" />
           ) : (
