@@ -4,4 +4,5 @@ export type User = {
   username: string;
   type: "artist" | "user";
   image_url: string;
+  artist_id?: string;
 };

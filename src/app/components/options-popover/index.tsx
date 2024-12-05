@@ -45,7 +45,7 @@ export function OptionsPopover({ pathname }: OptionsPopoverProps) {
               "font-bold": pathname === "/profile",
             }
           )}
-          href={`/profile/${currentUser?.uid}`}
+          href={`/profile`}
         >
           Perfil
         </Link>

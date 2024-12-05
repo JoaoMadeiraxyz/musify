@@ -31,6 +31,7 @@ export async function registerNewUser({
     await setDoc(doc(db, FB_USERS_COLLECTION, user.uid), {
       username,
       email,
+      type: "user",
     });
 
     return user;

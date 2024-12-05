@@ -3,32 +3,28 @@ import { doc, updateDoc } from "firebase/firestore";
 
 const FB_USER_COLLECTION = "users";
 
-type updateUserProps = {
-  user_id: string;
+type userProps = {
   email?: string;
   username?: string;
   type?: "artist" | "user";
   image_url?: string;
 };
 
+type updateUserProps = {
+  user_id: string;
+  updated_data: userProps;
+};
+
 export async function updateUserDocument({
   user_id,
-  email,
-  image_url,
-  type,
-  username,
+  updated_data,
 }: updateUserProps) {
   try {
     const userDocumentRef = doc(db, FB_USER_COLLECTION, user_id);
 
-    const updatedUserData = {
-      email,
-      image_url,
-      type,
-      username,
-    };
-
-    await updateDoc(userDocumentRef, updatedUserData);
+    if (updated_data) {
+      await updateDoc(userDocumentRef, updated_data);
+    }
   } catch (error) {
     console.error(error);
     throw new Error("Houve um erro ao atualizar o documento do usuário");

@@ -26,10 +26,6 @@ export default function Profile() {
     }
   }, [currentUser]);
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
   return (
     <main className="min-h-screen bg-black">
       <ProfileHero user={userData} />

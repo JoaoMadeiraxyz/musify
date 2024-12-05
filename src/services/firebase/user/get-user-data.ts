@@ -15,6 +15,7 @@ export async function getUserData(user_id: string | undefined) {
         username: userDocSnapshot.data()?.username,
         type: userDocSnapshot.data()?.type,
         image_url: userDocSnapshot.data()?.image_url,
+        artist_id: userDocSnapshot.data()?.artist_id,
       };
 
       return userData;
