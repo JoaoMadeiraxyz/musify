@@ -14,9 +14,10 @@ import { Music } from "@/app/types/music";
 
 interface RecentlyBoughtProps {
   sales: SaleItem[] | null;
+  type: "user" | "artist" | undefined;
 }
 
-export function RecentlyBought({ sales }: RecentlyBoughtProps) {
+export function RecentlyBought({ sales, type }: RecentlyBoughtProps) {
   const [musics, setMusics] = useState<Music[] | null>(null);
 
   async function handleGetMusicsData() {
@@ -55,7 +56,11 @@ export function RecentlyBought({ sales }: RecentlyBoughtProps) {
 
       <div className="flex flex-col gap-10 z-10">
         <div className="flex w-full justify-between">
-          <h3 className="text-2xl">Adquiridos</h3>
+          {type === "artist" ? (
+            <h3 className="text-2xl">Vendidos</h3>
+          ) : (
+            <h3 className="text-2xl">Adquiridos</h3>
+          )}
         </div>
         <MusicsList musics={musics} />
       </div>
