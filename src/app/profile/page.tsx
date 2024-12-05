@@ -24,6 +24,7 @@ export default function Profile() {
     if (currentUser) {
       handleGetUserData();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   return (

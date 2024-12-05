@@ -1,5 +1,6 @@
 import { db } from "../config";
 import { collection, addDoc } from "firebase/firestore";
+import { uploadImage } from "@/services/storage/upload-file";
 
 const FB_MUSICS_COLLECTION = "musics";
 
@@ -10,6 +11,7 @@ type createMusicProps = {
   genre: string;
   price: number;
   status: "launched" | "archived" | "programmed";
+  image: File;
 };
 
 export async function createMusicDocument({
@@ -19,9 +21,17 @@ export async function createMusicDocument({
   genre,
   price,
   status,
+  image,
 }: createMusicProps) {
   try {
     const musicsDocumentsCollection = collection(db, FB_MUSICS_COLLECTION);
+
+    const music_image = await uploadImage({
+      file: image,
+      file_name: image.name,
+      folder: "musics",
+      owner_id: artist_id,
+    });
 
     const newMusicData = {
       music_name,
@@ -30,6 +40,7 @@ export async function createMusicDocument({
       genre,
       price,
       status,
+      music_image,
     };
 
     await addDoc(musicsDocumentsCollection, newMusicData);

@@ -6,7 +6,7 @@ import {
 import { auth, db } from "./config";
 import { doc, setDoc } from "firebase/firestore";
 
-type AuthValues = {
+type RegisterValues = {
   email: string;
   password: string;
   username: string;
@@ -18,7 +18,7 @@ export async function registerNewUser({
   email,
   password,
   username,
-}: AuthValues) {
+}: RegisterValues) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -41,7 +41,12 @@ export async function registerNewUser({
   }
 }
 
-export async function loginUser({ email, password }: AuthValues) {
+type LoginValues = {
+  email: string;
+  password: string;
+};
+
+export async function loginUser({ email, password }: LoginValues) {
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,

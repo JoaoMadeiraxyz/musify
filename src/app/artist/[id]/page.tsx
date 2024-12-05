@@ -34,12 +34,14 @@ export default function ArtistPage() {
     if (currentUser) {
       handleGetUserData();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   useEffect(() => {
     if (pathname) {
       handleGetArtistData();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   return (
