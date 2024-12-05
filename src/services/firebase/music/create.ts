@@ -41,6 +41,7 @@ export async function createMusicDocument({
       price,
       status,
       music_image,
+      created_at: new Date().toISOString(),
     };
 
     await addDoc(musicsDocumentsCollection, newMusicData);

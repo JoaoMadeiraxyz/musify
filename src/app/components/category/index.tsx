@@ -4,11 +4,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
+import { Music } from "@/app/types/music";
+
 interface CategoryProps {
   text: string;
+  musics: Music[] | null;
 }
 
-export function Category({ text }: CategoryProps) {
+export function Category({ text, musics }: CategoryProps) {
   return (
     <div className="flex flex-col gap-3">
       <h3 className="text-2xl">{text}</h3>
@@ -38,36 +41,11 @@ export function Category({ text }: CategoryProps) {
             },
           }}
         >
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <MusicCard />
-          </SwiperSlide>
+          {musics?.map((music) => (
+            <SwiperSlide key={music.music_id}>
+              <MusicCard music={music} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import heroImage from "../../../../../../public/images/catalog/hero-background.png";
 import verifiedIcon from "../../../../../../public/verified.svg";
@@ -67,13 +68,18 @@ export function Hero({ user, artist_data }: heroProps) {
             </div>
           ) : (
             <div className="flex  gap-5 items-center justify-center w-fit">
-              <Button
-                className="bg-white text-black tracking-wide"
-                text="Adicionar Música"
-                icon={
-                  <PlusCircle size={20} className="min-w-[20px] min-h-[20px]" />
-                }
-              />
+              <Link href="/artist/enviar-musica">
+                <Button
+                  className="bg-white text-black tracking-wide"
+                  text="Adicionar Música"
+                  icon={
+                    <PlusCircle
+                      size={20}
+                      className="min-w-[20px] min-h-[20px]"
+                    />
+                  }
+                />
+              </Link>
 
               <UploadArtistBannerModal artist={artist_data} />
             </div>

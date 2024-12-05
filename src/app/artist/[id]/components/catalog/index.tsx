@@ -6,7 +6,13 @@ import backgroundTexture from "../../../../../../public/images/texture/bg-textur
 
 import { Category } from "@/app/components/category";
 
-export function Catalog() {
+import { Music } from "@/app/types/music";
+
+interface CatalogProps {
+  musics: Music[] | null;
+}
+
+export function Catalog({ musics }: CatalogProps) {
   return (
     <section className="w-full flex flex-col relative pl-8 md:pl-24 py-20">
       <Image
@@ -17,7 +23,7 @@ export function Catalog() {
       />
 
       <div className="w-full z-10 flex flex-col gap-5 md:gap-14">
-        <Category text="Músicas" />
+        <Category text="Músicas" musics={musics} />
       </div>
     </section>
   );
